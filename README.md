@@ -1,2 +1,2 @@
 # C-OpenCV-bottom-user-layer
-C-CV-bottom-layer CV 领域的核心工具库如 OpenCV、PCL 点云库
+C-CV-bottom-layer CV 领域的核心工具库如 OpenCV、PCL 点云库本质上是用 C++ 开发的，Python 版只是对 C++ 代码的 “封装调用”。 C++ 在这里的工作是：  实现底层核心算法：比如图像滤波（高斯模糊）、特征提取（SIFT/SURF）、形态学操作（腐蚀 / 膨胀）、点云配准（ICP 算法）等，这些算法需要极致的计算效率，C++ 的指针操作、内存直接访问能最小化开销； 提供高性能 API 接口：我们用 Python 调用的cv2.imread()，底层其实是 C++ 的cv::imread()函数 ——C++ 先把复杂的图像解析、像素处理逻辑写好，再暴露接口给其他语言调用； 兼容硬件底层：直接对接摄像头、GPU、FPGA 等硬件的驱动，比如 OpenCV 的 C++ 接口能直接读取工业相机的图像流（通过 GigE Vision 协议），而 Python 需要依赖额外的封装层。
